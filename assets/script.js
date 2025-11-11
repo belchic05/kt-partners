@@ -1,16 +1,25 @@
-document.querySelector('#calcBtn')?.addEventListener('click', () => {
-  const service = document.getElementById('service').value;
-  const amount = parseFloat(document.getElementById('amount').value || '0');
-  const map = {
-    impl: 50,
-    support: 20,
-    its: 10,
-    cloud: 50,
-    soc: 50,
-    license: 10
-  };
-  const percent = map[service] || 0;
-  const payout = Math.round(amount * percent / 100);
-  document.getElementById('percent').textContent = percent ? (percent + '%') : '—';
-  document.getElementById('payout').textContent = payout ? (payout.toLocaleString('ru-RU') + ' ₽') : '—';
-});
+// Calculator logic without "Внедрение" option.
+(function(){
+  const fmt = (n) => new Intl.NumberFormat('ru-RU').format(n) + ' ₽';
+
+  const dir = document.getElementById('dir');
+  const qty = document.getElementById('qty');
+  const out = document.getElementById('out');
+  const periodEl = document.getElementById('period');
+
+  if (dir && qty && out) {
+    const calc = () => {
+      try {
+        const cfg = JSON.parse(dir.value);
+        const q = Math.max(1, parseInt(qty.value || 1, 10));
+        const base = cfg.avg || 0;
+        const sum = Math.round(base * (cfg.pct/100) * q);
+        out.textContent = sum > 0 ? fmt(sum) : '—';
+        if (periodEl) periodEl.textContent = (cfg.mode === 'monthly') ? '/ месяц' : '(разово)';
+      } catch(e){ out.textContent = '—'; if (periodEl) periodEl.textContent = ''; }
+    };
+    dir.addEventListener('change', calc);
+    qty.addEventListener('input', calc);
+    calc();
+  }
+})();

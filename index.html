@@ -6,6 +6,9 @@
 <title>Партнёрская программа — Компьютерные Технологии</title>
 <meta name="description" content="Зарабатывайте до 50% по партнёрской программе: внедрение и поддержка 1С, ИБ-аутсорсинг, 1С в облаке, ИИ‑инструменты.">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Tektur:wght@400;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -40,8 +43,7 @@
         </div>
         <div>
           <div class="hero-image"><img src="assets/data-center-facility-employing-deep-learning-technology-1.png" alt="Hero"></div>
-        </div>
-      </div>
+        </div></div>
     </div>
   </section>
 
@@ -136,8 +138,7 @@
               <li>Актуальные переходы и обновления</li>
             </ul>
           </div>
-        </div>
-      </div>
+        </div></div>
 
     </div>
   </section>
@@ -162,13 +163,11 @@
           <h2 class="h2">Комиссии и примеры</h2>
           <table class="tbl" style="margin-top:12px">
             <tbody>
-              <tr><td class='name'>Внедрение</td><td class='pct'>50%</td><td class='muted'>150 000 ₽</td><td class='muted'>разово</td></tr>
-<tr><td class='name'>Поддержка</td><td class='pct'>20%</td><td class='muted'>15 000 ₽</td><td class='muted'>ежемесячно</td></tr>
-<tr><td class='name'>ИТС</td><td class='pct'>10%</td><td class='muted'>40 000 ₽</td><td class='muted'>разово</td></tr>
-<tr><td class='name'>Лицензии</td><td class='pct'>20%</td><td class='muted'>8 000 ₽</td><td class='muted'>разово</td></tr>
-<tr><td class='name'>ИБ аутсорсинг</td><td class='pct'>50%</td><td class='muted'>100 000 ₽</td><td class='muted'>разово</td></tr>
-<tr><td class='name'>1С в облаке</td><td class='pct'>50%</td><td class='muted'>15 000 ₽</td><td class='muted'>ежемесячно</td></tr>
-            </tbody>
+<tr><td class='name'>1С в облаке</td><td class='pct'>50%</td><td class='muted'>15 000 ₽/мес</td><td class='muted'>разово (первый счёт)</td></tr>
+<tr><td class='name'>1С:ИТС</td><td class='pct'>20%</td><td class='muted'>40 000 ₽</td><td class='muted'>разово</td></tr>
+<tr><td class='name'>Поддержка 1С</td><td class='pct'>10%</td><td class='muted'>150 000 ₽</td><td class='muted'>ежемесячно</td></tr>
+<tr><td class='name'>ИБ-аутсорсинг</td><td class='pct'>50%</td><td class='muted'>100 000 ₽/мес</td><td class='muted'>разово</td></tr>
+</tbody>
           </table>
         </div>
         
@@ -180,21 +179,18 @@
         <div>
           <label>Направление</label>
           <select id="dir" class="input">
-            <option value='{"name":"Внедрение","pct":50,"avg":150000}'>Внедрение — 50%</option>
-            <option value='{"name":"Поддержка","pct":20,"avg":15000}'>Поддержка — 20%</option>
-            <option value='{"name":"ИТС","pct":10,"avg":40000}'>ИТС — 10%</option>
-            <option value='{"name":"Лицензии","pct":20,"avg":8000}'>Лицензии — 20%</option>
-            <option value='{"name":"ИБ аутсорсинг","pct":50,"avg":100000}'>ИБ аутсорсинг — 50%</option>
-            <option value='{"name":"1С в облаке","pct":50,"avg":15000}'>1С в облаке — 50%</option>
+            <option value='{"key":"cloud","name":"1С в облаке","pct":50,"avg":15000,"mode":"one_time"}'>1С в облаке — 50% (разово, первый счёт)</option>
+            <option value='{"key":"its","name":"1С:ИТС","pct":20,"avg":40000,"mode":"one_time"}'>1С:ИТС — 20% (разово)</option>
+            <option value='{"key":"support","name":"Поддержка 1С","pct":10,"avg":150000,"mode":"monthly"}'>Поддержка 1С — 10% (ежемесячно)</option>
+            <option value='{"key":"soc","name":"ИБ-аутсорсинг","pct":50,"avg":100000,"mode":"one_time"}'>ИБ-аутсорсинг — 50% (разово)</option>
           </select>
         </div>
         <div>
           <label>Клиентов в месяц</label>
           <input id="qty" type="number" min="1" value="3">
-        </div>
-      </div>
-      <div class="calc-output">Ваш доход: <span id="out">—</span> / месяц</div>
-      <div class="muted" style="font-size:12px">Расчёт: средний чек × процент × кол-во клиентов.</div>
+        </div></div>
+      <div class="calc-output">Ваш доход: <span id="out">—</span> <span id="period">/ месяц</span></div>
+      <div class="muted" style="font-size:12px">Расчёт: средний чек × % × кол-во клиентов; для поддержки — выплата ежемесячно, для остальных — разово (первый счёт).</div>
       <div style="margin-top:10px"><a class="btn btn-primary" href="https://t.me/+E5KvMa0nN19mM2Ey">Обсудить сделку в Telegram</a></div>
     </div>
   </div>
@@ -204,15 +200,24 @@
   const dir = document.getElementById('dir');
   const qty = document.getElementById('qty');
   const out = document.getElementById('out');
-  function fmt(n){return new Intl.NumberFormat('ru-RU').format(n) + ' ₽';}
+  const periodEl = document.getElementById('period');
+
+  function fmt(n){ return new Intl.NumberFormat('ru-RU').format(n) + ' ₽'; }
+
   function calc(){
     try {
       const cfg = JSON.parse(dir.value);
       const q = Math.max(1, parseInt(qty.value || 1, 10));
-      const sum = Math.round(cfg.avg * (cfg.pct/100) * q);
-      out.textContent = fmt(sum);
-    } catch(e) { out.textContent = '—'; }
+      const base = cfg.avg || 0;
+      const sum = Math.round(base * (cfg.pct/100) * q);
+      out.textContent = sum > 0 ? fmt(sum) : '—';
+      if (periodEl) periodEl.textContent = (cfg.mode === 'monthly') ? '/ месяц' : '(разово)';
+    } catch(e){
+      out.textContent = '—';
+      if (periodEl) periodEl.textContent = '';
+    }
   }
+
   dir.addEventListener('change', calc);
   qty.addEventListener('input', calc);
   calc();
@@ -223,8 +228,7 @@
               <a class="btn btn-primary" href="https://t.me/+E5KvMa0nN19mM2Ey">Обсудить сделку в Telegram</a>
             </div>
           </div>
-        </div>
-      </div>
+        </div></div>
     </div>
   </section>
 
@@ -252,8 +256,7 @@
           <p style="margin:0 0 12px">Заявки принимаем в Telegram. Нажмите кнопку ниже — и напишите нам.</p>
           <a class="btn btn-primary" href="https://t.me/+E5KvMa0nN19mM2Ey">Открыть Telegram</a>
           <p class="muted" style="font-size:12px;margin-top:12px"></p>
-        </div>
-      </div>
+        </div></div>
     </div>
   </section>
 
